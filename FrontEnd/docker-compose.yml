@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  appfrontend:
+    image: ${DOCKER_REGISTRY-}center
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "5000:8001"
+    restart: unless-stopped

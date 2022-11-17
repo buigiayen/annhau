@@ -1,0 +1,3 @@
+  const Text= '<p>NỘI QUY NH&Oacute;M</p> <p><strong>1. Tất cả c&aacute;c th&agrave;nh vi&ecirc;n trong nh&oacute;m c&oacute; quyền v&agrave; nghĩa vụ sẽ tham gia tất cả c&aacute;c sự kiện m&agrave; nh&oacute;m do người đứng đầu tổ chức <span style="color: #ff0000;">(Chủ tịch)</span> c&oacute; thể kh&ocirc;ng phải l&agrave; <span style="color: #ff0000;">chủ t&iacute;ch</span> l&agrave; 1 th&agrave;nh vi&ecirc;n trong nh&oacute;m tổ chức.</strong></p>';
+
+  export default Text;
