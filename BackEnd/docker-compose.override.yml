@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  backend:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "SQLCONNECTION=Server=cresoft.top;Database=AnNhau;User Id=sa;Password=Buiyen123>;TrustServerCertificate=True"
+    ports:
+      - "7414:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
