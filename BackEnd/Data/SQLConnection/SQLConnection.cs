@@ -9,34 +9,34 @@ namespace BackEnd.Data.SQLConnection
 {
     public static class SQLConnection
     {
-        private  static string KEYCONNECTION = Environment.GetEnvironmentVariable("SQLCONNECTION");
-        private static List<SQLObject.APIresult> aPIresults = null;
+        private static string KEYCONNECTION = Environment.GetEnvironmentVariable("SQLCONNECTION");
+        private static SQLObject.APIresult aPIresults = null;
         public static SqlConnection Connection()
         {
             SqlConnection connection = new SqlConnection(KEYCONNECTION);
             return connection;
         }
 
-        public static async Task<List<SQLObject.APIresult>> SQLQuerryAsync(this SqlConnection Connection, string sql, Dictionary<string, object> _dic = null) 
-        { 
-            aPIresults = new List<SQLObject.APIresult>();
+        public static async Task<SQLObject.APIresult> SQLQuerryAsync(this SqlConnection Connection, string sql, Dictionary<string, object> _dic = null)
+        {
+            aPIresults = new SQLObject.APIresult();
             try
             {
                 var para = new DynamicParameters(_dic);
-                var data = await Connection.QueryAsync(sql, para ?? null);
-                aPIresults.Add(new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.OK, Data = data, Messenger = "Success!" });
+                var data = await Connection.ExecuteAsync(sql, para ?? null);
+                aPIresults = new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.OK, Data = data, Messenger = "Success!" };
 
             }
             catch (Exception ex)
             {
-                aPIresults.Add(new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.ERROR, Data = null, Messenger = ex.Message });
+                aPIresults = new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.ERROR, Data = null, Messenger = ex.Message };
 
             }
-            return aPIresults.ToList();
+            return aPIresults;
         }
-        public static async Task<List<SQLObject.APIresult>> ExcuteQuerryAsync(this SqlConnection Connection, string sql, Dictionary<string, object> _dic = null)
+        public static async Task<SQLObject.APIresult> ExcuteQuerryAsync(this SqlConnection Connection, string sql, Dictionary<string, object> _dic = null)
         {
-            aPIresults = new List<SQLObject.APIresult>();
+            aPIresults = new SQLObject.APIresult();
             var para = new DynamicParameters(_dic);
             int valueTransaction = 0;
             try
@@ -66,14 +66,14 @@ namespace BackEnd.Data.SQLConnection
             }
             return ReturnStatusSql(valueTransaction);
         }
-        private static List<SQLObject.APIresult> ReturnStatusSql(int status)
+        private static SQLObject.APIresult ReturnStatusSql(int status)
         {
-            aPIresults = new List<SQLObject.APIresult>();
+            aPIresults = new SQLObject.APIresult();
             switch (status)
             {
-                case -2: aPIresults.Add(new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.ERROR, Data = status, Messenger = "Error, Please check log transaction roll back " }); break;
-                case -1: aPIresults.Add(new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.ERROR, Data = status, Messenger = "Error system, Please check log" }); break;
-                default: aPIresults.Add(new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.OK, Data = status, Messenger = "Success transaction commit" }); break;
+                case -2: aPIresults =  new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.ERROR, Data = status, Messenger = "Error, Please check log transaction roll back " }; break;
+                case -1: aPIresults =  new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.ERROR, Data = status, Messenger = "Error system, Please check log" }; break;
+                default: aPIresults = new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.OK, Data = status, Messenger = "Success transaction commit" }; break;
             }
             return aPIresults;
         }

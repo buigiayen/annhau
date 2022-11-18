@@ -10,10 +10,49 @@ namespace BackEnd.Data.Command
 {
     public class ThanhVienCommand : IThanhVien
     {
-        public async Task<List<SQLObject.APIresult>> GetThanHVien(ThanhVien thanhVien)
+        private Dictionary<string, object> _dic = null;
+        public async Task<SQLObject.APIresult> GetThanHVien(ThanhVien thanhVien)
         {
-            string sqlCommand = "SELECT  ID, TenThanhVien, NoiDungNgan, IDChucVu, Avatar, HienThi, Email FROM ThanhVien";
+            string sqlCommand = "SELECT        ThanhVien.ID, ThanhVien.TenThanhVien, ThanhVien.NoiDungNgan, ThanhVien.IDChucVu, ThanhVien.Avatar, ThanhVien.HienThi, ChucVu.TenChucVu FROM ThanhVien INNER JOIN ChucVu ON ThanhVien.IDChucVu = ChucVu.ID";
             return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sqlCommand);
+        }
+
+        public async Task<SQLObject.APIresult> SuaThanhVien(ThanhVien thanhVien)
+        {
+            _dic = new Dictionary<string, object>();
+            string sqlCommand = "update ThanhVien set  TenThanhVien= @TenThanhVien, NoiDungNgan=@NoiDungNgan, IDChucVu=@IDChucVu, Avatar=@Avatar, HienThi=@HienThi where ID=@ID";
+            _dic.Add("ID", thanhVien.ID);
+            _dic.Add("TenThanhVien", thanhVien.TenThanhVien);
+            _dic.Add("NoiDungNgan", thanhVien.NoiDungNgan);
+            _dic.Add("IDChucVu", thanhVien.IDChucVu);
+            _dic.Add("HienThi", thanhVien.HienThi);
+            _dic.Add("Avatar", thanhVien.Avatar);
+            _dic.Add("Email", thanhVien.Email);
+            _dic.Add("Email", thanhVien.ID);
+            return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sqlCommand, _dic);
+        }
+
+        public async Task<SQLObject.APIresult> TaoMoiThanhVien(ThanhVien thanhVien)
+        {
+            _dic = new Dictionary<string, object>();
+            string sqlCommand = "insert into ThanhVien (INSERT INTO [dbo].[ThanhVien] ([TenThanhVien] ,[NoiDungNgan] ,[IDChucVu] ,[Avatar] ,[Email]) values " +
+                "(@TenThanhVien,@NoiDungNgan, @IDChucVu ,@Avatar, @Email)";
+            _dic.Add("ID", thanhVien.ID);
+            _dic.Add("TenThanhVien", thanhVien.TenThanhVien);
+            _dic.Add("NoiDungNgan", thanhVien.NoiDungNgan);
+            _dic.Add("IDChucVu", thanhVien.IDChucVu);
+            _dic.Add("Avatar", thanhVien.Avatar);
+            _dic.Add("Email", thanhVien.Email);
+            return await SQLConnection.SQLConnection.Connection().ExcuteQuerryAsync(sqlCommand, _dic);
+        }
+
+        public async Task<SQLObject.APIresult> XoaThanhVien(ThanhVien thanhVien)
+        {
+            _dic = new Dictionary<string, object>();
+            string sqlCommand = "update ThanhVien set HienThi=@HienThi where ID=@ID";
+            _dic.Add("ID", thanhVien.ID);
+            _dic.Add("HienThi", thanhVien.HienThi);
+            return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sqlCommand, _dic);
         }
     }
 }

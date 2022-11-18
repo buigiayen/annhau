@@ -18,8 +18,8 @@ const index = (props) => {
     console.log(props);
     const GetData = () => {
         const Navigate =useNavigate();
-        const arr = props.data[0].data ?? [];
-        const valueArr = arr.map((data) => {
+        console.log(props);
+        const valueArr = datasource.map((data) => {
             return (
                 <Col flex="1 1 300px" >
                     <Card

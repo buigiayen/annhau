@@ -26,19 +26,22 @@ namespace BackEnd.Controllers
             return Ok(data);
         }
         [HttpPost("ThanhVien")]
-        public async Task<IActionResult> ThemThanhVien()
+        public async Task<IActionResult> ThemThanhVien([FromBody] Model.ThanhVien thanhVien)
         {
-            return Ok();
+            var data = await _IThanhVien.TaoMoiThanhVien(thanhVien);
+            return Ok(data);
         }
         [HttpPut("ThanhVien")]
-        public async Task<IActionResult> SuaThanhVien()
+        public async Task<IActionResult> SuaThanhVien([FromBody] Model.ThanhVien thanhVien)
         {
-            return Ok();
+            var data = await _IThanhVien.SuaThanhVien(thanhVien);
+            return Ok(data);
         }
         [HttpDelete("ThanhVien")]
-        public async Task<IActionResult> XoaThanhVien()
+        public async Task<IActionResult> XoaThanhVien([FromBody] Model.ThanhVien thanhVien)
         {
-            return Ok();
+            var data = await _IThanhVien.XoaThanhVien(thanhVien);
+            return Ok(data);
         }
     }
 }
