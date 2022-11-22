@@ -11,15 +11,20 @@ namespace BackEnd.Controllers
     [ApiController]
     public class NoiQuyController : ControllerBase
     {
-        [HttpGet("NoiQui")]
-        public async Task<IActionResult> ThongTinNoiQui()
+        private interfaces.INoiQui _noiQui { get; set; }
+        public NoiQuyController(interfaces.INoiQui noiQui)
         {
-            return Ok();
+            _noiQui = noiQui;
+        }
+        [HttpGet("NoiQui")]
+        public async Task<IActionResult> ThongTinNoiQui([FromQuery]Model.NoiQui noiQui)
+        {
+            return Ok(await _noiQui.GetNoiQuiasync(noiQui));
         }
         [HttpPut("NoiQui")]
-        public async Task<IActionResult> SuaNoiQui()
+        public async Task<IActionResult> SuaNoiQui(Model.NoiQui noiQui)
         {
-            return Ok();
+            return Ok(await _noiQui.UpdateNoiQuiasync(noiQui));
         }
       
     }

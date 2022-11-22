@@ -23,7 +23,7 @@ namespace BackEnd.Data.SQLConnection
             try
             {
                 var para = new DynamicParameters(_dic);
-                var data = await Connection.ExecuteAsync(sql, para ?? null);
+                var data = await Connection.QueryAsync(sql, para ?? null);
                 aPIresults = new SQLObject.APIresult { code = SQLObject.Enums.Httpstatuscode_API.OK, Data = data, Messenger = "Success!" };
 
             }
