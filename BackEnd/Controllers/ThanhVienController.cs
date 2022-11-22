@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BackEnd.Controllers
@@ -20,7 +21,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpGet("ThanhVien")]
-        public async Task<IActionResult> DanhSachThanhVien([FromQuery]Model.ThanhVien thanhVien)
+        public async Task<IActionResult> DanhSachThanhVien([FromQuery] Model.ThanhVien thanhVien)
         {
             var data = await _IThanhVien.GetThanHVien(thanhVien);
             return Ok(data);
