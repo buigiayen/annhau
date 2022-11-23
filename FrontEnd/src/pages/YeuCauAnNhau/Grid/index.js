@@ -12,7 +12,7 @@ export const Grid = ({ LichAnNhau }) => {
         return (
           <>
             <Collapse collapsible="header" defaultActiveKey={['1']}>
-              <Panel header={rs.NoiDungAnNhau} key="1">
+              <Panel  header={rs.NoiDungAnNhau} key="1">
                 <Descriptions title={rs.NoiDungAnNhau}>
                   <Descriptions.Item label="Số tiền thanh toán">{rs.SoTienThanhToan}</Descriptions.Item>
                   <Descriptions.Item label="Thành viên tạo">{rs.TenThanhVien}</Descriptions.Item>
