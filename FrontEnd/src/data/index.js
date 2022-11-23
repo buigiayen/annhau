@@ -37,6 +37,9 @@ const ShowMessenger = (typeMessenger, Title) => {
         case "error":
             message.error(Title);
             break;
+        case "success":
+            message.success(Title);
+            break;
         default: break;
 
     }
@@ -109,13 +112,13 @@ export const PUT = async (URI, body, messageShow = false, params) => {
 }
 const ExposeData = (datas) => {
     const { code, data, messenger } = datas.data;
-    if(data !== undefined){
+    if (data !== undefined) {
         switch (code) {
-            case 200: ShowMessenger("Info", messenger); return data;
+            case 200: ShowMessenger("success", messenger); return data;
             default: ShowMessenger("error", messenger ?? "lỗi"); return [];
         }
-    }else{
+    } else {
         ShowMessenger("error", 'Loading error!');
         return [];
-    } 
+    }
 }

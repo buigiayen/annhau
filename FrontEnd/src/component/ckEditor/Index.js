@@ -1,12 +1,13 @@
 import React, { Component, useState } from 'react';
 import { Button } from 'antd';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { PUTNoiQuy as PutNQ } from '../../data/NoiQuy/NoiQuy';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const App = (props) => {
     const [data, SetValueData] = useState();
-    const PutNoiQuy = () => {
-        
+    const PutNoiQuy = async () => {
+       await PutNQ({NoiDung:data, NgayBanHanh : new Date()});
     }
     return (
         <div className="App">
