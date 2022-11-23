@@ -13,6 +13,7 @@ namespace BackEnd.DIConnection
         public static IServiceCollection ConfigDI(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IThanhVien, ThanhVienCommand>();
+            serviceCollection.AddTransient<ILichAnNhau, LichAnNhauCommand>();
             serviceCollection.AddSingleton<INoiQui, NoiQuiCommand>();
             return serviceCollection;
         }

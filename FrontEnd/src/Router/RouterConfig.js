@@ -4,6 +4,7 @@ import DienDan from '../pages/DienDan';
 import ViewPost from '../pages/ViewPostDetails';
 import Tiket from '../pages/Tiket';
 import Home404 from '../pages/404/Index'
+import HomeBaoTri from '../pages/BaoTri/index'
 import combine from '../component/Icon';
 import YeuCauAnNhau from '../pages/YeuCauAnNhau/index'
 import  {Index as NoiQuiAnNhau} from '../pages/NoiQuyAnNhau/Index'
@@ -32,6 +33,24 @@ export const ConfigRouter = () => [
         Link: 'NoiQuyAnNhau',
         componentpages: < NoiQuiAnNhau/>,
         Icon: <combine.SketchOutlined />,
+        IsAuthent: false,
+        isShow: true,
+
+    },
+    {
+        label: 'Thu chi nhóm',
+        Link: 'ThuChiNhom',
+        componentpages: < HomeBaoTri/>,
+        Icon: <combine.ExceptionOutlined />,
+        IsAuthent: false,
+        isShow: true,
+
+    },
+    {
+        label: 'Rank',
+        Link: 'Rank',
+        componentpages: < HomeBaoTri/>,
+        Icon: <combine.ExceptionOutlined />,
         IsAuthent: false,
         isShow: true,
 

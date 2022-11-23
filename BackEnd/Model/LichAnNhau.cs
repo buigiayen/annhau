@@ -10,7 +10,8 @@ namespace BackEnd.Model
         public int ID { get; set; }
         public string NoiDungAnNhau { get; set; }
         public DateTime NgayAnNhau { get; set; }
-        public int  IDThanHVien { get; set; }
+        public int  IDThanhVien { get; set; }
         public double SoTienThanhToan { get; set; }
+        public bool Cancel { get; set; }
     }
 }
