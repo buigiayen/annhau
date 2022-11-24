@@ -13,8 +13,14 @@ namespace BackEnd.Data.Command
         private Dictionary<string, object> _dic = null;
         public async Task<SQLObject.APIresult> GetThanHVien(ThanhVien thanhVien)
         {
-            string sqlCommand = "SELECT        ThanhVien.ID, ThanhVien.TenThanhVien, ThanhVien.NoiDungNgan, ThanhVien.IDChucVu, ThanhVien.Avatar, ThanhVien.HienThi, ChucVu.TenChucVu FROM ThanhVien INNER JOIN ChucVu ON ThanhVien.IDChucVu = ChucVu.ID";
-            return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sqlCommand);
+            _dic = new Dictionary<string, object>();
+            string sqlCommand = "SELECT        ThanhVien.ID, ThanhVien.TenThanhVien, ThanhVien.NoiDungNgan, ThanhVien.IDChucVu, ThanhVien.Avatar, ThanhVien.HienThi, ChucVu.TenChucVu FROM ThanhVien INNER JOIN ChucVu ON ThanhVien.IDChucVu = ChucVu.ID where 1=1 ";
+            if (thanhVien.ID != null)
+            {
+                sqlCommand += " and ThanhVien.ID=@ID";
+                _dic.Add("ID", thanhVien.ID);
+            }
+            return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sqlCommand, _dic);
         }
 
         public async Task<SQLObject.APIresult> SuaThanhVien(ThanhVien thanhVien)

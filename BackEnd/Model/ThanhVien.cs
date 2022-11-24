@@ -7,7 +7,7 @@ namespace BackEnd.Model
 {
     public class ThanhVien
     {
-        public int ID { get; set; }
+        public int? ID { get; set; }
         public string TenThanhVien { get; set; }
         public string NoiDungNgan { get; set; }
         public int IDChucVu { get; set; }
