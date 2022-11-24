@@ -10,9 +10,9 @@ const App = (props) => {
             props.OnChangeUser(value);
         }
     }
-    useMemo(() => {
+    useMemo(async() => {
         const ComboThanhVien = [];
-        ListThanhVien().then(rs => { rs.map(r => ComboThanhVien.push({ value: r.ID, label: r.TenThanhVien })) });
+        await ListThanhVien().then(rs => { rs.map(r => ComboThanhVien.push({ value: r.ID, label: r.TenThanhVien })) });
         setSource(ComboThanhVien);
     }, []);
     return (

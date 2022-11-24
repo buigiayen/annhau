@@ -7,7 +7,9 @@ import {
     ApiOutlined ,
     LoginOutlined ,
     ExperimentOutlined ,
-    SketchOutlined
+    SketchOutlined,
+    ReloadOutlined,
+    SearchOutlined,
 } from '@ant-design/icons';
 
 
@@ -20,6 +22,8 @@ const combine = {
     ApiOutlined,
     LoginOutlined,
     ExperimentOutlined,
-    SketchOutlined 
+    SketchOutlined ,
+    ReloadOutlined,
+    SearchOutlined
 }
 export default combine;

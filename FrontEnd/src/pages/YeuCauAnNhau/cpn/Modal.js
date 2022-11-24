@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Form, Button, Modal, Input } from "antd";
+import { Form, Button, Modal, Input,InputNumber  } from "antd";
 import ComboThanhVien from '../../../component/ComboThanhVien/index'
 import {PostLichAnNhau} from '../../../data/LichAnNhau/index'
+
 export default function Index() {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
     const [LichPost, SetLichPost] = useState({
         noiDungAnNhau: null,
+        NgayAnNhau: new Date(),
         idThanhVien: 0,
         soTienThanhToan: 0,
         cancel: true
@@ -53,7 +55,7 @@ export default function Index() {
                         <ComboThanhVien OnChangeUser={(rs) => { SetLichPost({ ...LichPost, idThanhVien: rs }) }} />
                     </Form.Item>
                     <Form.Item label="Số tiền quỹ">
-                        <Input onChange={(e) => { SetLichPost({ ...LichPost, soTienThanhToan: e.target.value }) }} />
+                        <InputNumber onChange={(value) => { SetLichPost({ ...LichPost, soTienThanhToan: value }) }} />
                     </Form.Item>
 
                 </Form>
