@@ -15,6 +15,7 @@ namespace BackEnd.DIConnection
             serviceCollection.AddTransient<IThanhVien, ThanhVienCommand>();
             serviceCollection.AddTransient<ILichAnNhau, LichAnNhauCommand>();
             serviceCollection.AddSingleton<INoiQui, NoiQuiCommand>();
+            serviceCollection.AddSingleton<IChucVu, ChucVuCommand>();
             return serviceCollection;
         }
     }

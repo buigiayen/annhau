@@ -7,8 +7,9 @@ namespace BackEnd.interfaces
 {
     public interface IChucVu
     {
-        Task<Data.SQLConnection.SQLObject.APIresult> GetNoiQuiasync(Model.NoiQui NoiQui);
-        Task<Data.SQLConnection.SQLObject.APIresult> UpdateNoiQuiasync(Model.NoiQui NoiQui);
-        Task<Data.SQLConnection.SQLObject.APIresult> DeleteNoiQuiasync(Model.NoiQui NoiQui);
+        Task<Data.SQLConnection.SQLObject.APIresult> GetChucVuasync();
+        Task<Data.SQLConnection.SQLObject.APIresult> POSTChucVuasync(Model.NoiQui NoiQui);
+        Task<Data.SQLConnection.SQLObject.APIresult> UpdateChucVuasync(Model.NoiQui NoiQui);
+        Task<Data.SQLConnection.SQLObject.APIresult> DeleteChucVuasync(Model.NoiQui NoiQui);
     }
 }

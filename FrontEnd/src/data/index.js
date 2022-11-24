@@ -17,13 +17,9 @@ const Connection = (URI, method = 'GET', body, params = null) => {
             ...params,
         },
         data: body,
-    }).catch();
+    }).catch(rs => console.log(rs));
 }
-const TimeOutLoading = () => {
-    setTimeout(() => {
-        message.destroy();
-    }, Config.Timeout)
-}
+
 
 const ShowMessenger = (typeMessenger, Title) => {
     message.destroy();
@@ -57,7 +53,7 @@ export const GET = async (URI, body, messageShow = false, params) => {
         return ExposeData(data);
     }
     catch {
-        ShowMessenger("error", 'erver is not running!');
+        ShowMessenger("error", 'Server is not running!');
     }
     return data;
 }
@@ -89,7 +85,7 @@ export const DELETE = async (URI, body, messageShow = false, params) => {
         return ExposeData(data);
     }
     catch {
-        ShowMessenger("error", 'erver is not running!');
+        ShowMessenger("error", 'Server is not running!');
     }
     return data;
 }
@@ -105,7 +101,7 @@ export const PUT = async (URI, body, messageShow = false, params) => {
         return ExposeData(data);
     }
     catch {
-        ShowMessenger("error", 'erver is not running!');
+        ShowMessenger("error", 'Server is not running!');
         return [];
     }
 

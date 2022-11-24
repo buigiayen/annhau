@@ -41,7 +41,7 @@ namespace BackEnd.Data.Command
         public async Task<SQLObject.APIresult> TaoMoiThanhVien(ThanhVien thanhVien)
         {
             _dic = new Dictionary<string, object>();
-            string sqlCommand = "insert into ThanhVien (INSERT INTO [dbo].[ThanhVien] ([TenThanhVien] ,[NoiDungNgan] ,[IDChucVu] ,[Avatar] ,[Email]) values " +
+            string sqlCommand = "INSERT INTO [dbo].[ThanhVien] ([TenThanhVien] ,[NoiDungNgan] ,[IDChucVu] ,[Avatar] ,[Email]) values " +
                 "(@TenThanhVien,@NoiDungNgan, @IDChucVu ,@Avatar, @Email)";
             _dic.Add("ID", thanhVien.ID);
             _dic.Add("TenThanhVien", thanhVien.TenThanhVien);

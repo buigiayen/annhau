@@ -11,26 +11,30 @@ namespace BackEnd.Controllers
     [ApiController]
     public class ChucVuController : ControllerBase
     {
-
+        private interfaces.IChucVu _chucVu;
+        public ChucVuController(interfaces.IChucVu chucVu)
+        {
+            _chucVu = chucVu;
+        }
         [HttpGet("ChucVu")]
         public async Task<IActionResult> TaoMoi()
         {
-            return Ok();
+            return Ok(await _chucVu.GetChucVuasync());
         }
         [HttpPost("ChucVu")]
-        public async Task<IActionResult> ThemMoiChucVu()
+        public async Task<IActionResult> ThemMoiChucVu(Model.NoiQui NoiQui)
         {
-            return Ok();
+            return Ok(await _chucVu.POSTChucVuasync(NoiQui));
         }
         [HttpPut("ChucVu")]
-        public async Task<IActionResult> SuaChucVu()
+        public async Task<IActionResult> SuaChucVu(Model.NoiQui NoiQui)
         {
-            return Ok();
+            return Ok(await _chucVu.UpdateChucVuasync(NoiQui));
         }
         [HttpDelete("ChucVu")]
-        public async Task<IActionResult> XoaChucVu()
+        public async Task<IActionResult> XoaChucVu(Model.NoiQui NoiQui)
         {
-            return Ok();
+            return Ok(await _chucVu.DeleteChucVuasync(NoiQui));
         }
     }
 }
