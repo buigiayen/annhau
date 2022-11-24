@@ -1,18 +1,25 @@
 
-import { Typography } from 'antd';
+import { Typography,Button } from 'antd';
 import React, { useMemo, useState } from 'react';
 import { Markup } from 'interweave';
-import { GETNoiQuy } from '../../../data/NoiQuy/NoiQuy';
+import { GETNoiQuy, PUTNoiQuy } from '../../../data/NoiQuy/NoiQuy';
 import CkEditor from '../../../component/ckEditor/Index'
-const { Paragraph } = Typography;
 
 const Index = () => {
     const [clickTriggerStr, setClickTriggerStr] = useState();
     useMemo(async () => {
         GETNoiQuy().then(rs => setClickTriggerStr(rs[0].NoiDung))
     }, [])
+
+    const PutNoiQuy = async () => {
+        await PUTNoiQuy({ NoiDung: clickTriggerStr, NgayBanHanh: new Date() });
+    }
     return (
-        <CkEditor Value ={clickTriggerStr} Title={"Nội quy"}></CkEditor>
+        <>
+            <CkEditor Title={"Nội quy"} Value ={clickTriggerStr} e={(e) => { setClickTriggerStr(e) }}></CkEditor>
+            <Button onClick={PutNoiQuy}>Save</Button>
+        </>
+
 
     )
 }

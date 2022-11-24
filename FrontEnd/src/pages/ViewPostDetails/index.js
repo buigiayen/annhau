@@ -1,10 +1,17 @@
-import React, { useEffect, useMemo } from "react";
-import {useParams}from "react-router-dom";
-import PostDetails from './PostDetails/index'
-import dataPost from "../../data/Postnew";
-export default function Index() {
- 
-    let {ID} = useParams();
-    const data = dataPost.filter(p=>p.id === Number(ID) )
-    return (<PostDetails data={data}/>)
+import { Space } from "antd";
+import React, { useEffect, useMemo, useState } from "react";
+import ThongTinThanhVien from './ThongTinThanhVien/ThongTin'
+import ThoiGianThamGia from './ThongTinThanhVien/ThoiGianThamGia'
+
+const Index = () => {
+
+    return (<>
+
+        <ThongTinThanhVien ></ThongTinThanhVien>
+        <br></br>
+        <ThoiGianThamGia ></ThoiGianThamGia>
+
+
+    </>)
 }
+export default Index;
