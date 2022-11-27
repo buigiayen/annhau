@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Controllers
 {
-    [Route("api/ChucVus")]
+    [Route("v1/ChucVus")]
     [ApiController]
     public class ChucVuController : ControllerBase
     {

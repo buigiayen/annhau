@@ -22,7 +22,7 @@ namespace BackEnd.Data.Command
 
         public async Task<SQLObject.APIresult> GetLichAnNhauasync()
         {
-            string sql = "SELECT  LichAnNhau.ID AS IDLich, LichAnNhau.NoiDungAnNhau , LichAnNhau.NgayAnNhau, LichAnNhau.IDThanhVien , LichAnNhau.SoTienThanhToan , ThanhVien.TenThanhVien, ThanhVien.ID as IDThanhVien,  LichAnNhau.Cancel  FROM LichAnNhau INNER JOIN ThanhVien ON LichAnNhau.IDThanhVien = ThanhVien.ID";
+            string sql = "SELECT  LichAnNhau.ID AS IDLich, LichAnNhau.NoiDungAnNhau , LichAnNhau.NgayAnNhau, LichAnNhau.IDThanhVien , LichAnNhau.SoTienThanhToan , ThanhVien.TenThanhVien, ThanhVien.ID as IDThanhVien,  LichAnNhau.Cancel  FROM LichAnNhau INNER JOIN ThanhVien ON LichAnNhau.IDThanhVien = ThanhVien.ID where LichAnNhau.Cancel = 0 ";
             return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sql);
         }
 

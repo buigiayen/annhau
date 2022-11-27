@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button, Modal, Input  } from "antd";
-import {PostThanhVien} from '../../../data/ThanhVien/Index'
+import { Form, Button, Modal, Input, Avatar } from "antd";
+import { PostThanhVien } from '../../../data/ThanhVien/Index'
 import ChucVu from '../../../component/ChucVu/index'
-
+import ButtonUpload from "../../../component/ButtonUploadFile/Button.Upload";
 
 export default function Index() {
     const [open, setOpen] = useState(false);
@@ -25,12 +25,16 @@ export default function Index() {
             setOpen(false);
             setConfirmLoading(false);
         }, 2000);
-       PostThanhVien(ThanhVienPost);
+        PostThanhVien(ThanhVienPost);
     };
 
     const handleCancel = () => {
         setOpen(false);
     };
+    const SetStateAvatar = (values) => {
+        const { filePath } = values;
+        SetThanhVienPost({ ...ThanhVienPost, avatar: `http://${filePath}` })
+    }
     return (
         <>
             <Button onClick={showModal} type="primary">Tạo mới</Button>
@@ -48,7 +52,9 @@ export default function Index() {
                     wrapperCol={{ span: 14 }}
                     layout="horizontal"
                 >
-
+                    <Form.Item label="Ảnh đại diện">
+                        <Avatar src={ThanhVienPost.avatar}></Avatar>
+                    </Form.Item>
                     <Form.Item label="Tên thành viên" required rules={[{ required: true, message: 'Xin hãy nhập tên!' }]}>
                         <Input onChange={(e) => { SetThanhVienPost({ ...ThanhVienPost, tenThanhVien: e.target.value }) }} />
                     </Form.Item>
@@ -58,13 +64,19 @@ export default function Index() {
                     <Form.Item label="Chức vụ">
                         <ChucVu e={(e) => { SetThanhVienPost({ ...ThanhVienPost, idChucVu: e }) }} />
                     </Form.Item>
-                    <Form.Item label="Link Avatar">
-                        <Input onChange={(e) => { SetThanhVienPost({ ...ThanhVienPost, avatar:  e.target.value }) }} />
-                    </Form.Item>
+                    {
+                        !ThanhVienPost.avatar && <Form.Item label="Link Avatar">
+                            <Input onChange={(e) => { SetThanhVienPost({ ...ThanhVienPost, avatar: e.target.value }) }} />
+                        </Form.Item>
+                    }
+
                     <Form.Item label="email">
                         <Input onChange={(e) => { SetThanhVienPost({ ...ThanhVienPost, email: e.target.value }) }} />
                     </Form.Item>
-                    
+                    <Form.Item label="File avatar">
+                        <ButtonUpload e={(e) => { SetStateAvatar(e) }}></ButtonUpload>
+                    </Form.Item>
+
                 </Form>
             </Modal>
 

@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: sqlserver
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 1433:1433
+    volumes:
+      - data:/var/opt/mssql/data
+      - BAK:/var/opt/mssql/BAK
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /data
+  BAK:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /bak
+
+#docker network create -d bridge onelis-network
+networks:
+  default:
+    external: true
+    name: sql-network

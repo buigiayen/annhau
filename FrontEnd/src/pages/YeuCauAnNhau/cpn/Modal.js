@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Modal, Input,InputNumber  } from "antd";
-import ComboThanhVien from '../../../component/ComboThanhVien/index'
+import ComboThanhVien from '../../../component/ThanhVien/index'
 import {PostLichAnNhau} from '../../../data/LichAnNhau/index'
 
 export default function Index() {

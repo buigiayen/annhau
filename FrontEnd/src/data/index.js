@@ -17,6 +17,23 @@ const Connection = (URI, method = 'GET', body, params = null) => {
             ...params,
         },
         data: body,
+        
+    }).catch(rs => console.log(rs));
+}
+const PostFile = (URI, method = 'GET', body, params = null) => {
+
+    const UrlBase = Config.urlbackend + URI;
+    return axios(UrlBase, {
+        method: method,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': localStorage.getItem("ITOKEN"),
+        },
+        params: {
+            ...params,
+        },
+        data: body,
+        
     }).catch(rs => console.log(rs));
 }
 
@@ -98,6 +115,23 @@ export const PUT = async (URI, body, messageShow = false, params) => {
     };
     try {
         data = await Connection(URI, 'PUT', body, params);
+        return ExposeData(data);
+    }
+    catch {
+        ShowMessenger("error", 'Server is not running!');
+        return [];
+    }
+
+}
+export const Upload = async (URI, body, messageShow = false, params) => {
+
+    var data = [];
+    if (messageShow) {
+        const hide = message.loading('Loading data ...', 0);
+        setTimeout(hide, Config.Timeout);
+    };
+    try {
+        data = await PostFile(URI, 'POST', body, body);
         return ExposeData(data);
     }
     catch {

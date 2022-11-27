@@ -10,6 +10,11 @@ import {
     SketchOutlined,
     ReloadOutlined,
     SearchOutlined,
+    CheckCircleTwoTone,
+    LogoutOutlined,
+    SendOutlined ,
+    DeleteOutlined,
+    UploadOutlined 
 } from '@ant-design/icons';
 
 
@@ -24,6 +29,11 @@ const combine = {
     ExperimentOutlined,
     SketchOutlined ,
     ReloadOutlined,
-    SearchOutlined
+    SearchOutlined,
+    CheckCircleTwoTone,
+    LogoutOutlined,
+    SendOutlined,
+    DeleteOutlined,
+    UploadOutlined
 }
 export default combine;

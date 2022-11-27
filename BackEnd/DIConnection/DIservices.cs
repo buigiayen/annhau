@@ -16,6 +16,7 @@ namespace BackEnd.DIConnection
             serviceCollection.AddTransient<ILichAnNhau, LichAnNhauCommand>();
             serviceCollection.AddSingleton<INoiQui, NoiQuiCommand>();
             serviceCollection.AddSingleton<IChucVu, ChucVuCommand>();
+            serviceCollection.AddScoped<IFileUpload, FileCommand>();
             return serviceCollection;
         }
     }

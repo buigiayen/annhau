@@ -19,6 +19,7 @@ const Index = () => {
             <Descriptions.Item label="Tên thành viên" >{DataThanhVien.TenThanhVien}</Descriptions.Item>
             <Descriptions.Item label="Nội dung ngắn">{DataThanhVien.NoiDungNgan}</Descriptions.Item>
             <Descriptions.Item label="Rank">{DataThanhVien.TenChucVu}</Descriptions.Item>
+            <Descriptions.Item label="Email">{DataThanhVien.email}</Descriptions.Item>
         </Descriptions>
     </>)
 }

@@ -16,6 +16,7 @@ function App() {
         <Header>
           <Row>
             <Col span={8}> <Nav /></Col>
+          
           </Row>
         </Header>
         <Content

@@ -1,0 +1,2 @@
+FROM buiyenit/sqlserver:240522
+EXPOSE 1433

@@ -11,7 +11,7 @@ const App = (props) => {
     const [Data, SetData] = useState([]);
     useMemo(async () => {
         const MapChucVu = [];
-        await GETchucVu().then(rs => {rs.map(rs => { MapChucVu.push({ label: rs.TenChucVu, value: rs.ID }) }) })
+        await GETchucVu().then(rs => {rs.map(rsI => { MapChucVu.push({ label: rsI.TenChucVu, value: rsI.ID }) }) })
         SetData(MapChucVu);
     }, [])
     return (
