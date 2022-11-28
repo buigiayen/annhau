@@ -5,6 +5,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "SQLCONNECTION=Server=cresoft.top;Database=AnNhau;User Id=sa;Password=Buiyen123>;TrustServerCertificate=True"
+      - "UserEmail=buiyen.cresoft@gmail.com"
+      - "PassEmail=bfxbgmdjwjsmwiyt"
     ports:
       - "7414:80"
     volumes:

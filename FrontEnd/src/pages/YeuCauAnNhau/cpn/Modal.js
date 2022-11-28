@@ -3,7 +3,7 @@ import { Form, Button, Modal, Input,InputNumber  } from "antd";
 import ComboThanhVien from '../../../component/ThanhVien/index'
 import {PostLichAnNhau} from '../../../data/LichAnNhau/index'
 
-export default function Index() {
+export default function Index(props) {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
@@ -16,6 +16,9 @@ export default function Index() {
     });
     const showModal = () => {
         setOpen(true);
+        if(props.Reload !== undefined){
+            props.Reload(true);
+        }
     };
 
     const handleOk = () => {

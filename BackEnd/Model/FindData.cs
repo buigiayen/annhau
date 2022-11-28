@@ -8,7 +8,7 @@ namespace BackEnd.Model
     public class FindData
     {
         public string? TextFind { get; set; }
-        public DateTime? ToDate { get; set; }
-        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; } = DateTime.Now.AddDays(+1);
+        public DateTime? FromDate { get; set; } = DateTime.Now.Date;
     }
 }

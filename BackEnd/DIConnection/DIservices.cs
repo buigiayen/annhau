@@ -17,6 +17,7 @@ namespace BackEnd.DIConnection
             serviceCollection.AddSingleton<INoiQui, NoiQuiCommand>();
             serviceCollection.AddSingleton<IChucVu, ChucVuCommand>();
             serviceCollection.AddScoped<IFileUpload, FileCommand>();
+            serviceCollection.AddSingleton<IEmail, EmailCommand>();
             return serviceCollection;
         }
     }

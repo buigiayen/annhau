@@ -10,6 +10,7 @@ import QuerySearch from './cpn/Seach'
 
 export default function Index() {
   const [LichAnNhau, SetDataLichAnNhau] = useState();
+  const [Reload, SetReload] = useState();
   const functionGetAPI = (value) => {
     GETLichAnNhau(value).then(rs => SetDataLichAnNhau(rs));
   }
@@ -28,7 +29,7 @@ export default function Index() {
       <Form.Item>
         <Space size="small">
           <ReloadPage></ReloadPage>
-          <Modal></Modal>
+          <Modal Reload={(Reload) => {SetReload(!Reload)}}></Modal>
           <QuerySearch e={(e) => { functionGetAPI(e) }}></QuerySearch>
         </Space>
       </Form.Item>
