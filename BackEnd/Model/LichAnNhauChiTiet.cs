@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Model
 {
-    public class LichAnNhauChiTiet
+    public class LichAnNhauChiTiet : FindData
     {
         public int ID { get; set; }
         public int IDLich { get; set; }
         public int ThanhVienThamGia { get; set; }
         public DateTime NgayThamGia { get; set; }
+       
     }
 }
