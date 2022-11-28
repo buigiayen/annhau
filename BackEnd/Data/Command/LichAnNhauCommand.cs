@@ -20,10 +20,22 @@ namespace BackEnd.Data.Command
             return await SQLConnection.SQLConnection.Connection().ExcuteQuerryAsync(sql, _dic);
         }
 
-        public async Task<SQLObject.APIresult> GetLichAnNhauasync()
+        public async Task<SQLObject.APIresult> GetLichAnNhauasync(Model.LichAnNhau LichAnNhau)
         {
-            string sql = "SELECT  LichAnNhau.ID AS IDLich, LichAnNhau.NoiDungAnNhau , LichAnNhau.NgayAnNhau, LichAnNhau.IDThanhVien , LichAnNhau.SoTienThanhToan , ThanhVien.TenThanhVien, ThanhVien.ID as IDThanhVien,  LichAnNhau.Cancel  FROM LichAnNhau INNER JOIN ThanhVien ON LichAnNhau.IDThanhVien = ThanhVien.ID where LichAnNhau.Cancel = 0 ";
-            return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sql);
+            _dic = new Dictionary<string, object>();
+            string sql = "SELECT  LichAnNhau.ID AS IDLich, LichAnNhau.NoiDungAnNhau , LichAnNhau.NgayAnNhau, LichAnNhau.IDThanhVien , LichAnNhau.SoTienThanhToan , ThanhVien.TenThanhVien, ThanhVien.ID as IDThanhVien,  LichAnNhau.Cancel  FROM LichAnNhau INNER JOIN ThanhVien ON LichAnNhau.IDThanhVien = ThanhVien.ID where LichAnNhau.Cancel = 0 and 1=1";
+            if (!string.IsNullOrEmpty(LichAnNhau.TextFind))
+            {
+                sql += " and  (LichAnNhau.ID like @TextFind or LichAnNhau.NoiDungAnNhau like '%' + @TextFind + '%' or LichAnNhau.SoTienThanhToan like '%' + @TextFind + '%')    ";
+                _dic.Add("TextFind", LichAnNhau.TextFind);
+            }
+            if (LichAnNhau.FromDate != null && LichAnNhau.ToDate !=null)
+            {
+                sql += " and LichAnNhau.NgayAnNhau BETWEEN @DateFrom and @DateTo";
+                _dic.Add("DateFrom", LichAnNhau.FromDate);
+                _dic.Add("DateTo", LichAnNhau.ToDate);
+            }
+            return await SQLConnection.SQLConnection.Connection().SQLQuerryAsync(sql, _dic);
         }
 
         public async Task<SQLObject.APIresult> PostLichAnNhauasync(LichAnNhau LichAnNhau)

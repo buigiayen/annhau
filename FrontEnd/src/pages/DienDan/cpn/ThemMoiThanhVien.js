@@ -54,6 +54,7 @@ export default function Index() {
                 >
                     <Form.Item label="Ảnh đại diện">
                         <Avatar src={ThanhVienPost.avatar}></Avatar>
+                        <ButtonUpload e={(e) => { SetStateAvatar(e) }}></ButtonUpload>
                     </Form.Item>
                     <Form.Item label="Tên thành viên" required rules={[{ required: true, message: 'Xin hãy nhập tên!' }]}>
                         <Input onChange={(e) => { SetThanhVienPost({ ...ThanhVienPost, tenThanhVien: e.target.value }) }} />
@@ -73,9 +74,7 @@ export default function Index() {
                     <Form.Item label="email">
                         <Input onChange={(e) => { SetThanhVienPost({ ...ThanhVienPost, email: e.target.value }) }} />
                     </Form.Item>
-                    <Form.Item label="File avatar">
-                        <ButtonUpload e={(e) => { SetStateAvatar(e) }}></ButtonUpload>
-                    </Form.Item>
+                  
 
                 </Form>
             </Modal>

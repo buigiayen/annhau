@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Model
 {
-    public class LichAnNhau
+    public class LichAnNhau : FindData
     {
         public int ID { get; set; }
         public string NoiDungAnNhau { get; set; }
@@ -14,4 +14,5 @@ namespace BackEnd.Model
         public double SoTienThanhToan { get; set; }
         public bool Cancel { get; set; }
     }
+   
 }

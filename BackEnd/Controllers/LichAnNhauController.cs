@@ -17,9 +17,9 @@ namespace BackEnd.Controllers
             _LichAnNhau = LichAnNhau;
         }
         [HttpGet("Lich")]
-        public async Task<IActionResult> ThongTinLichAnNhau()
+        public async Task<IActionResult> ThongTinLichAnNhau([FromQuery]Model.LichAnNhau lichAnNhau)
         {
-            return Ok(await _LichAnNhau.GetLichAnNhauasync());
+            return Ok(await _LichAnNhau.GetLichAnNhauasync(lichAnNhau));
         }
         [HttpPost("Lich")]
         public async Task<IActionResult> ThemLichAnNhau(Model.LichAnNhau lichAnNhau)

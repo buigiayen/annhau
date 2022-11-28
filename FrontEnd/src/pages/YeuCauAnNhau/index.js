@@ -6,11 +6,17 @@ import { GETLichAnNhau } from '../../data/LichAnNhau/index'
 import Modal from './cpn/Modal'
 import ReloadPage from '../../component/RefeshPage/index'
 import QuerySearch from './cpn/Seach'
+
+
 export default function Index() {
   const [LichAnNhau, SetDataLichAnNhau] = useState();
-  useMemo(async () => {
-    GETLichAnNhau().then(rs => SetDataLichAnNhau(rs));
+  const functionGetAPI = (value) => {
+    GETLichAnNhau(value).then(rs => SetDataLichAnNhau(rs));
+  }
+  useState(async () => {
+    functionGetAPI(null);
   }, [])
+
   return (
     <Form
       name="basic"
@@ -23,7 +29,7 @@ export default function Index() {
         <Space size="small">
           <ReloadPage></ReloadPage>
           <Modal></Modal>
-          <QuerySearch e={(e) => {console.log(e)}}></QuerySearch>
+          <QuerySearch e={(e) => { functionGetAPI(e) }}></QuerySearch>
         </Space>
       </Form.Item>
       <Form.Item >
