@@ -23,9 +23,8 @@ const TitleYeuCauAnNhau = (props) => {
     return <>
         <Space>
 
-           
-                <Button size='small' type="primary" icon={<combine.CheckCircleTwoTone twoToneColor="#52c41a"  ></combine.CheckCircleTwoTone>}>Chi tiết sự kiện!</Button>
-    
+
+            <Button size='small' type="primary" icon={<combine.CheckCircleTwoTone twoToneColor="#52c41a"  ></combine.CheckCircleTwoTone>}>Chi tiết sự kiện!</Button>
             <Button size='small' icon={<combine.SendOutlined  ></combine.SendOutlined>} onClick={() => SetOpenModal(!OpenModal)}>Gửi Email</Button>
             {OpenModal && <ModalListThanhVien Open={OpenModal} IDPost={ID}></ModalListThanhVien>}
             <Popconfirm title="Xác nhận xóa?" okText="Yes" cancelText="No" onConfirm={(e) => ButtonDelete(ID)}>
@@ -33,7 +32,7 @@ const TitleYeuCauAnNhau = (props) => {
             </Popconfirm>
 
         </Space>
-       
+
     </>
 
 }
