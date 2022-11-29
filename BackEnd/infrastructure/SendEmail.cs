@@ -11,7 +11,7 @@ namespace BackEnd.infrastructure
     {
         public static async Task<Model.Email> SendEmails(Model.Email email)
         {
-            foreach (var item in email.listEmialDetails)
+            foreach (var item in email.ListEmailDetails)
             {
                 MailMessage message = new MailMessage();
                 try
@@ -36,6 +36,7 @@ namespace BackEnd.infrastructure
                 {
                     item.LOG = ex.Message.ToString();
                     item.StatusSendEmai = Model.StatusSendEmail.FAIL;
+                    throw;
                 }
                 message.Dispose();
             }

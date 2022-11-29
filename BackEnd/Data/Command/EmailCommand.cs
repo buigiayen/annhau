@@ -17,13 +17,23 @@ namespace BackEnd.Data.Command
 
         public async Task<SQLObject.APIresult> SendEmailasync(Email email)
         {
-       
+
             aPIresult = new SQLObject.APIresult();
             try
             {
-                aPIresult.code = SQLObject.Enums.Httpstatuscode_API.OK;
-                aPIresult.Data = await infrastructure.SendEmail.SendEmails(email);
-                aPIresult.Messenger = "Send";
+                if (email.ListEmailDetails.Any())
+                {
+                    aPIresult.code = SQLObject.Enums.Httpstatuscode_API.OK;
+                    aPIresult.Data = await infrastructure.SendEmail.SendEmails(email);
+                    aPIresult.Messenger = "Send";
+                }
+                else
+                {
+                    aPIresult.code = SQLObject.Enums.Httpstatuscode_API.ERROR;
+                    aPIresult.Data = null;
+                    aPIresult.Messenger = "Chưa có email";
+                }
+
             }
             catch (Exception ex)
             {

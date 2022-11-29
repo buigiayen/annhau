@@ -7,7 +7,8 @@ import Home404 from '../pages/404/Index'
 import HomeBaoTri from '../pages/BaoTri/index'
 import combine from '../component/Icon';
 import YeuCauAnNhau from '../pages/YeuCauAnNhau/index'
-import  {Index as NoiQuiAnNhau} from '../pages/NoiQuyAnNhau/Index'
+import { Index as NoiQuiAnNhau } from '../pages/NoiQuyAnNhau/Index'
+import XacNhanAnNhau from '../pages/XacNhanAnNhau/index'
 export const ConfigRouter = () => [
     {
         label: 'Danh sách thành viên ăn nhậu',
@@ -18,11 +19,11 @@ export const ConfigRouter = () => [
         isShow: true,
 
     },
-   
+
     {
         label: 'Lịch ăn nhậu',
         Link: 'YeuCauAnNhau',
-        componentpages: < YeuCauAnNhau/>,
+        componentpages: < YeuCauAnNhau />,
         Icon: <combine.ExperimentOutlined />,
         IsAuthent: false,
         isShow: true,
@@ -31,7 +32,7 @@ export const ConfigRouter = () => [
     {
         label: 'Nội quy ăn nhậu',
         Link: 'NoiQuyAnNhau',
-        componentpages: < NoiQuiAnNhau/>,
+        componentpages: < NoiQuiAnNhau />,
         Icon: <combine.SketchOutlined />,
         IsAuthent: false,
         isShow: true,
@@ -40,7 +41,7 @@ export const ConfigRouter = () => [
     {
         label: 'Thu chi nhóm',
         Link: 'ThuChiNhom',
-        componentpages: < HomeBaoTri/>,
+        componentpages: < HomeBaoTri />,
         Icon: <combine.ExceptionOutlined />,
         IsAuthent: false,
         isShow: true,
@@ -49,7 +50,7 @@ export const ConfigRouter = () => [
     {
         label: 'Rank',
         Link: 'Rank',
-        componentpages: < HomeBaoTri/>,
+        componentpages: < HomeBaoTri />,
         Icon: <combine.ExceptionOutlined />,
         IsAuthent: false,
         isShow: true,
@@ -58,7 +59,16 @@ export const ConfigRouter = () => [
     {
         label: 'ERR',
         Link: '/:ID/View',
-        componentpages: < ViewPost/>,
+        componentpages: < ViewPost />,
+        Icon: <combine.HomeOutlined />,
+        IsAuthent: false,
+        isShow: false,
+
+    },
+    {
+        label: 'Confirm',
+        Link: '/Confirm/:Token/:IDPOST',
+        componentpages: < XacNhanAnNhau />,
         Icon: <combine.HomeOutlined />,
         IsAuthent: false,
         isShow: false,

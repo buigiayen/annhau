@@ -9,18 +9,18 @@ namespace BackEnd.Model
     {
         public Email()
         {
-            listEmialDetails = new List<EmailDetails>();
+            ListEmailDetails = new List<EmailDetails>();
         }
         public string Title { get; set; }
         public string Body { get; set; }
-        public List<EmailDetails> listEmialDetails { get; set; }
-        public string EmailFrom { get;  set; }
+        public List<EmailDetails> ListEmailDetails { get; set; }
+        public string EmailFrom { get; set; } = Environment.GetEnvironmentVariable("UserEmail");
     }
 
     public class EmailDetails
     {
         public string MailTo { get; set; }
-        public string LOG { get; set; } = "SEND SUCCESS";
+        public string LOG { get; set; }
         public StatusSendEmail StatusSendEmai { get; set; }
 
     }

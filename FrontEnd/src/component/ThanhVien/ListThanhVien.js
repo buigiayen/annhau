@@ -2,7 +2,7 @@ import { Modal, Checkbox, Input } from "antd";
 import { useMemo } from "react";
 import { useState } from "react";
 import { ListThanhVien } from '../../data/ThanhVien/Index'
-import {POSTEmail} from '../../data/Email/index'
+import { POSTEmail } from '../../data/Email/index'
 const { TextArea } = Input;
 const ModalListThanhVien = (props) => {
     const { Open } = props;
@@ -13,35 +13,37 @@ const ModalListThanhVien = (props) => {
     const [ObjectEmail, SetObjectEmail] = useState({
         title: null,
         body: null,
-        listEmialDetails: [
+        ListEmailDetails: [
             {
-                mailTo: "buiyen4696@gmail.com",
+                MailTo: "",
             }
         ],
     })
     const onChange = (e) => {
         console.log('checked = ', e);
         if (e !== []) {
-            const CheckedIndex = e;      
-            const EmailSend = [];
-            CheckedIndex.forEach(Index => {
-                EmailSend.push(dataListThanhVien.filter(p => p.value === Index));
-            });
-           
-            SetObjectEmail()
+            const CheckedIndex = e ?? [];
+            const ListEmailDetails = [];
+            dataListThanhVien.filter(p => CheckedIndex.includes(p.value)).map(rs => {
+                ListEmailDetails.push(rs);
+            })
+
+            console.log(ListEmailDetails);
+            SetObjectEmail({ ...ObjectEmail, ListEmailDetails })
         }
 
     };
     const OnOK = () => {
-        if (ObjectEmail.listEmialDetails !== []) {
-            POSTEmail({title:"Test",body:"body",listEmialDetails : ObjectEmail.listEmialDetails});
+        console.log(ObjectEmail);
+        if (ObjectEmail.ListEmailDetails !== []) {
+            POSTEmail({ title: "Thư mời ăn nhậu!", body: ObjectEmail.body, ListEmailDetails: ObjectEmail.ListEmailDetails });
         }
 
     }
     useMemo(async () => {
         const DataThanhVienValues = []
         await ListThanhVien().then(rs => {
-            rs.map(index => { DataThanhVienValues.push({ value: index.ID, label: index.TenThanhVien, mailTo: index.email, disabled: index.email === null ?? false }) })
+            rs.map(index => { DataThanhVienValues.push({ value: index.ID, label: index.TenThanhVien, MailTo: index.email, disabled: index.email === null ?? false }) })
         })
         SetListThanhVien(DataThanhVienValues);
     }, [])
@@ -61,7 +63,7 @@ const ModalListThanhVien = (props) => {
             <hr></hr>
             Nội dung tâm thư
 
-            <TextArea >
+            <TextArea onChange={(e) => { SetObjectEmail({ ObjectEmail, body: e.target.value }) }}>
             </TextArea>
             <small style={{ color: 'red' }}>Link tham dự được gửi kèm theo Email</small>
         </Modal>
