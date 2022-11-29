@@ -14,7 +14,7 @@ namespace BackEnd.Data.Command
         public async Task<SQLObject.APIresult> GetThanHVien(ThanhVien thanhVien)
         {
             _dic = new Dictionary<string, object>();
-            string sqlCommand = "SELECT        ThanhVien.ID, ThanhVien.TenThanhVien, ThanhVien.NoiDungNgan, ThanhVien.IDChucVu, ThanhVien.Avatar, ThanhVien.HienThi, ChucVu.TenChucVu, ThanhVien.email FROM ThanhVien INNER JOIN ChucVu ON ThanhVien.IDChucVu = ChucVu.ID where 1=1 ";
+            string sqlCommand = "SELECT      ThanhVien.Token,   ThanhVien.ID, ThanhVien.TenThanhVien, ThanhVien.NoiDungNgan, ThanhVien.IDChucVu, ThanhVien.Avatar, ThanhVien.HienThi, ChucVu.TenChucVu, ThanhVien.email FROM ThanhVien INNER JOIN ChucVu ON ThanhVien.IDChucVu = ChucVu.ID where 1=1 ";
             if (thanhVien.ID != null)
             {
                 sqlCommand += " and ThanhVien.ID=@ID";

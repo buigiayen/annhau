@@ -23,7 +23,7 @@ namespace BackEnd.infrastructure
                     message.To.Add(new MailAddress(item.MailTo));
                     message.Subject = email.Title;
                     message.IsBodyHtml = true; //to make message body as html  
-                    message.Body = email.Body;
+                    message.Body = item.Body;
                     smtp.Port = 587;
                     smtp.Host = "smtp.gmail.com"; //for gmail host  
                     smtp.EnableSsl = true;

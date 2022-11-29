@@ -5,7 +5,7 @@ import { ListThanhVien } from '../../data/ThanhVien/Index'
 import { POSTEmail } from '../../data/Email/index'
 const { TextArea } = Input;
 const ModalListThanhVien = (props) => {
-    const { Open } = props;
+    const { Open, IDPost } = props;
     const [ShowModal, SetShowModal] = useState(Open ?? false);
     const [checked, setChecked] = useState(true);
     const [disabled, setDisabled] = useState(false);
@@ -36,17 +36,23 @@ const ModalListThanhVien = (props) => {
     const OnOK = () => {
         console.log(ObjectEmail);
         if (ObjectEmail.ListEmailDetails !== []) {
-            POSTEmail({ title: "Thư mời ăn nhậu!", body: ObjectEmail.body, ListEmailDetails: ObjectEmail.ListEmailDetails });
+            POSTEmail({ title: "Thư mời ăn nhậu!", ListEmailDetails: ObjectEmail.ListEmailDetails });
         }
 
+    }
+    const Replyboy = (Token) => {
+        let httplocation = window.location.origin + `/confirm/${Token}/${IDPost}`;
+        return httplocation;
     }
     useMemo(async () => {
         const DataThanhVienValues = []
         await ListThanhVien().then(rs => {
-            rs.map(index => { DataThanhVienValues.push({ value: index.ID, label: index.TenThanhVien, MailTo: index.email, disabled: index.email === null ?? false }) })
+            rs.map(index => { DataThanhVienValues.push({ value: index.ID, label: index.TenThanhVien, MailTo: index.email, Body: ObjectEmail.body + "<br></br>"+Replyboy(index.Token, 111), disabled: index.email === null ?? false }) })
         })
         SetListThanhVien(DataThanhVienValues);
     }, [])
+
+    
     return (
         <Modal
             title="Danh sách thành viên"
@@ -67,6 +73,7 @@ const ModalListThanhVien = (props) => {
             </TextArea>
             <small style={{ color: 'red' }}>Link tham dự được gửi kèm theo Email</small>
         </Modal>
+    
     )
 
 }

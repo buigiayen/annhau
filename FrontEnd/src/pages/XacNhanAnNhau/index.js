@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-
+import Confirm from "../Confirm/index";
 const Index = () => {
     let { Token, IDPOST } = useParams();
     return (<>
-    {Token} - {IDPOST}
+    <Confirm></Confirm>
     </>)
 }
 export default Index;
