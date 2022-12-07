@@ -7,6 +7,7 @@ import Home404 from '../pages/404/Index'
 import HomeBaoTri from '../pages/BaoTri/index'
 import combine from '../component/Icon';
 import YeuCauAnNhau from '../pages/YeuCauAnNhau/index'
+import ThuChiNhom from '../pages/ThuChiNhom/index'
 import { Index as NoiQuiAnNhau } from '../pages/NoiQuyAnNhau/Index'
 import XacNhanAnNhau from '../pages/XacNhanAnNhau/index'
 export const ConfigRouter = () => [
@@ -41,7 +42,7 @@ export const ConfigRouter = () => [
     {
         label: 'Thu chi nhóm',
         Link: 'ThuChiNhom',
-        componentpages: < HomeBaoTri />,
+        componentpages: < ThuChiNhom />,
         Icon: <combine.ExceptionOutlined />,
         IsAuthent: false,
         isShow: true,

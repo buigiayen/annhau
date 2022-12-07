@@ -38,9 +38,11 @@ namespace BackEnd.infrastructure
                     item.StatusSendEmai = Model.StatusSendEmail.FAIL;
                     throw;
                 }
+             
                 message.Dispose();
             }
             return email;
         }
+      
     }
 }
